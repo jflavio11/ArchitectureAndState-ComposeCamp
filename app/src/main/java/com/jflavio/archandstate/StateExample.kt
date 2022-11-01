@@ -80,10 +80,10 @@ private fun DefaultPreview3() {
     MyLoader(progress = 0.75f)
 }
 
-@Preview(showBackground = true, name = "10%")
+@Preview(showBackground = true, name = "100%")
 @Composable
 private fun DefaultPreview4() {
-    MyLoader(progress = 0.100f)
+    MyLoader(progress = 1.0f)
 }
 
 @Stable
