@@ -8,6 +8,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.jflavio.archandstate.uistate.ui.HomeScreen
 import com.jflavio.archandstate.uistate.ui.LoginScreen
 import com.jflavio.archandstate.uistate.ui.LoginViewModel
 import com.jflavio.archandstate.uistate.ui.theme.ArchAndStateTheme
@@ -18,8 +22,17 @@ class LoginActivity : ComponentActivity() {
         setContent {
             ArchAndStateTheme {
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
-                    val viewModel: LoginViewModel by viewModels()
-                    LoginScreen(viewModel)
+                    val navController = rememberNavController()
+                    val loginViewModel: LoginViewModel by viewModels()
+                    val initialRoute = if(loginViewModel.loginUiState.loggedIn) "home" else "login"
+                    NavHost(navController = navController, startDestination = initialRoute) {
+                        composable("login") {
+                            LoginScreen(viewModel = loginViewModel)
+                        }
+                        composable("home") {
+                            HomeScreen()
+                        }
+                    }
                 }
             }
         }

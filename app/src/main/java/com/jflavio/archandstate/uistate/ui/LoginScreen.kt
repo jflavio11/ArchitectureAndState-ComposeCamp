@@ -34,7 +34,9 @@ import com.jflavio.archandstate.R
  * @since 11/10/2022
  */
 @Composable
-fun LoginScreen(viewModel: LoginViewModel) {
+fun LoginScreen(
+    viewModel: LoginViewModel
+) {
     Column(
         modifier = Modifier
             .padding(12.dp)

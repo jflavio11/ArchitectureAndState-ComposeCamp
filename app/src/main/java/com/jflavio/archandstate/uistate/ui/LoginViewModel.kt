@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
  * @since 11/10/2022
  */
 class LoginViewModel(
-    private val loginUseCase: LoginUseCase
+    private val loginUseCase: LoginUseCase = LoginUseCase()
 ) : ViewModel() {
 
     var loginUiState by mutableStateOf(LoginUiState())
