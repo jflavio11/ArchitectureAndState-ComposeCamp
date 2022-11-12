@@ -46,6 +46,7 @@ fun LoginScreen(
         LoginHeader()
         LoginForm(
             formUiState = formUiState,
+            loginErrorInfo = viewModel.loginUiState.errorInfo,
             onLoginButtonClicked = {
                 viewModel.onLogin(formUiState.email, formUiState.password)
             }
@@ -76,6 +77,7 @@ fun LoginHeader() {
 @Composable
 private fun LoginForm(
     formUiState: LoginFormState = rememberLoginFormState(),
+    loginErrorInfo: LoginError? = null,
     onLoginButtonClicked: () -> Unit
 ) {
     Column(modifier = Modifier.fillMaxWidth()) {
@@ -133,6 +135,14 @@ private fun LoginForm(
                 keyboard?.hide()
             }
         )
+        if (loginErrorInfo != null) {
+            Text(
+                text = loginErrorInfo.message,
+                style = MaterialTheme.typography.caption.copy(
+                    color = MaterialTheme.colors.error
+                )
+            )
+        }
         Spacer(modifier = Modifier.weight(1.0f))
         Button(
             onClick = { onLoginButtonClicked() },
