@@ -9,6 +9,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import com.jflavio.archandstate.uistate.domain.ErrorInfo
 
 /**
  * LoginUiState
@@ -25,6 +26,11 @@ data class LoginUiState(
 data class LoginError(
     val code: Int,
     val message: String
+)
+
+fun ErrorInfo.toLoginError() = LoginError(
+    code = this.code,
+    message = this.message
 )
 // endregion
 
